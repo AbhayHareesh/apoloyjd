@@ -1,2 +1,208 @@
-# apoloyjd
-sorry namya
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry, Namya</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fdeff2;
+        position: relative;
+    }
+
+    /* Background slideshow */
+    .slideshow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    .slideshow img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 2s ease-in-out;
+    }
+
+    .slideshow img.active {
+        opacity: 0.4; /* slightly faded so text is readable */
+    }
+
+    .container {
+        max-width: 650px;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 25px 30px;
+        border-radius: 15px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        text-align: left;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 1s forwards;
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+    }
+
+    @keyframes fadeIn {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+        color: #e74c3c;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    p {
+        font-size: 17px;
+        line-height: 1.6;
+        margin: 10px 0;
+    }
+
+    button {
+        display: block;
+        margin: 20px auto 0 auto;
+        padding: 12px 25px;
+        font-size: 18px;
+        border: none;
+        border-radius: 25px;
+        background: #e74c3c;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s, background 0.2s;
+    }
+
+    button:hover {
+        background: #c0392b;
+        transform: scale(1.05);
+    }
+
+    .heart {
+        position: fixed;
+        bottom: -10px;
+        font-size: 24px;
+        animation: floatUp 4s linear forwards;
+        color: red;
+        opacity: 0.8;
+        pointer-events: none;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) scale(1); opacity: 1; }
+        100% { transform: translateY(-700px) scale(1.5); opacity: 0; }
+    }
+
+    /* Typewriter effect */
+    .typewriter p {
+        display: inline-block;
+        white-space: pre-wrap; 
+        overflow: hidden;
+        border-right: .15em solid #e74c3c;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="slideshow">
+    <img src="/mnt/data/7722E1EC-13D6-49C7-9E5B-08FBE892C567.jpeg" class="active">
+    <img src="/mnt/data/D92B2D83-A3D7-4880-AB3C-8DD0493FEF61.jpeg">
+    <img src="/mnt/data/5E1F55AF-B9DA-41BD-8768-92AAE66D5C6C.jpeg">
+</div>
+
+<div class="container typewriter" id="messageContainer">
+    <h1>I’m Really Sorry, Namya ❤️</h1>
+
+    <p id="apologyText">
+I am sorry, baby, my love. I want you to feel safe around me, comfortable around me, and I failed to do that.
+You don’t have any idea the amount of guilt I am living with right now, because the one person you should
+always feel comfortable with made you uncomfortable, and that is killing me from the inside.
+I can’t explain it properly, but I hope you understand that this was never my intention.
+
+I think I’ve made it clear that I am not here for your body or anything like that, because I genuinely could
+spend my entire life with you without ever kissing you. Like genuinely, Namya.
+I am so sorry for making such a foolish mistake of forcing you when that was never my intention.
+I couldn’t care less about having sex — it was just my stupid ego that got in between.
+
+This is definitely not your fault. I mean, yeah, maybe a little, but what I did was completely unacceptable.
+I know this won’t change our relationship, except for the fact that now we understand when to have
+“soul intertwining.”
+It has been so long since we’ve been dating, and I don’t think I’m comfortable with anyone the way I am with you.
+
+We talk about literally anything — personal hygiene, random stuff — you feel like family.
+You are family.
+I am really sorry. I know you didn’t ask for anything and you’re not mad or anything,
+but I’m a guy who can’t bear hurting his girlfriend’s feelings by doing something really stupid.
+Even if nothing actually happened, it still matters.
+
+We still need to talk about a lot of things, but let’s clear this out first, because this can be cleared out.
+I don’t know how to explain it properly, but yeah… I am really sorry.
+And I love you till death.
+
+— Abhay
+    </p>
+
+    <button onclick="forgiveMe()">Forgive Me 💖</button>
+</div>
+
+<script>
+function forgiveMe() {
+    const interval = setInterval(createHeart, 200);
+    setTimeout(() => clearInterval(interval), 5000);
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 4000);
+}
+
+// Typewriter effect
+const text = document.getElementById("apologyText").innerText;
+const container = document.getElementById("apologyText");
+container.innerText = "";
+let index = 0;
+
+function typeWriter() {
+    if (index < text.length) {
+        container.innerText += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 20);
+    }
+}
+
+window.onload = () => {
+    typeWriter();
+    // Slideshow
+    const slides = document.querySelectorAll(".slideshow img");
+    let current = 0;
+    setInterval(() => {
+        slides[current].classList.remove("active");
+        current = (current + 1) % slides.length;
+        slides[current].classList.add("active");
+    }, 5000); // change every 5s
+};
+</script>
+
+</body>
+</html>
